@@ -7,12 +7,13 @@ print(myArray)
 cornerList = [[0, 0], [0, 2], [2, 0], [2, 2]]
 nonCornerList = [[0, 1], [1, 0], [1, 2], [2, 1]]
 
-probNumber = rand.randint(1, 11)
-print(probNumber)
+for i in range(9):
+    probNumber = rand.randint(1, 11)
+    print("first Probabiity number", probNumber)
 
 #if the computer can win. usually do that
 #else if the player is gonna win, usually do that.
-for i in range(9):
+
     if myArray[1, 1] == 0:
         if probNumber in range(1, 3):
             newRand = rand.randint(0, len(cornerList)-1)
@@ -32,21 +33,26 @@ for i in range(9):
             myArray[1, 1] = 1
             print(myArray)
     else:
-        if probNumber in range(1, 7):  #throws error when the length of corner list is 0
+        if (((probNumber in range(1, 7)) and (len(cornerList) > 0)) or (len(nonCornerList) == 0)):  #throws error when the length of corner list is 0
             newRand = rand.randint(0, len(cornerList)-1)
-            print(newRand)
+            print("second new rand", newRand)
             myArray[cornerList[newRand][0], cornerList[newRand][1]] = 1
             print(myArray)
             cornerList.pop(newRand)
-            print(cornerList)
+            print("corner list: ", cornerList)
+        elif ((len(cornerList) == 0) and (len(nonCornerList) == 0)):
+            myArray[1, 1] = 1
+            print(myArray)
         else:
             newRand = rand.randint(0, len(nonCornerList)-1)
             print(newRand)
+            print(nonCornerList[newRand])
             myArray[nonCornerList[newRand][0], nonCornerList[newRand][1]] = 1
             print(myArray)
             nonCornerList.pop(newRand)
             print(nonCornerList)
-        #else if the middle is taken
+        
+        
         
 
 
